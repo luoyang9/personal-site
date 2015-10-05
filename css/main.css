@@ -1,0 +1,245 @@
+@font-face {
+    font-family: 'nexaLight';
+    src: url('../fonts/NexaLight.otf');
+}
+
+html, body {
+	padding:0;
+	margin:0;
+	height: 100%;
+	color: black;
+}
+
+h1, h2, p, a{
+	font-family: 'nexaLight', sans-serif;
+}
+
+textarea {
+	resize: none;
+}
+
+.container {
+	height: 50px;
+}
+
+.nav a {
+	font-size: 15px;
+	text-transform: uppercase;
+	outline: 0;
+}
+
+.home {
+	height: 100%;
+	width: 100%;
+	background: url('../img/background2.jpg') no-repeat fixed center top;
+	display: table;
+}
+
+.home-title  {
+    background-color: rgba(0,0,0,0.3);
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.home-title h1 {
+  color: #ffffff;
+  font-size: 80px; 
+}
+
+.home-title p {
+  font-size: 35px;
+  color: #ffffff;
+}
+
+.aboutme {
+	text-align: center;
+}
+
+.aboutme h1 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #000099;
+}
+
+.aboutme h2 {
+	font-weight: bold;
+}
+
+.aboutme p {
+	font-size: 25px;
+}
+
+.description {
+	padding: 70px 0;
+}
+
+.description p {
+	max-width: 850px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.facts {
+	background: url('../img/achievementbackground.jpg') no-repeat fixed center top;
+	color: white;
+}
+
+.facts p {
+	font-size: 20px;
+}
+
+.small-width {
+	max-width: 80%;
+	margin-left:auto;
+	margin-right:auto;
+	padding:35px;
+}
+
+.large-icon {
+	font-size:150px;
+	color: #00CCFF;
+}
+
+.history {
+	text-align: center;
+}
+
+.history h1 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #000099;
+}
+
+.history p {
+	font-size: 25px;
+	width: 65%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.historydescription {
+	padding: 70px 0;
+}
+
+.experiences {
+	background: url('../img/historybackground.jpg') no-repeat fixed center top;
+	color: white;
+}
+
+.experiences p {
+	width: 100%;
+	font-size: 17px;
+}
+
+.contact {
+	text-align: center;
+	padding: 30px 0;
+}
+
+.contactform {
+	width: 65%;
+	margin: 0 auto;
+}
+
+.contactform input {
+	line-height: 2em;
+	width: 100%;
+}
+
+.contactform textarea{
+	width: 100%;
+}
+
+
+.contactform table {
+	width: 100%;
+}
+
+#contactsubmit{
+	color: white;
+	background-color: #00CCFF;
+	border: 0px none;
+	padding: 4px 0px;
+}
+
+#darkBackground {
+	position: fixed;
+	top: 0%; 
+	width: 0%; 
+	z-index: 199;
+	background: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+#contactAlert {
+	background-color: white;
+	top: 40%; 
+	width: 30%; 
+	min-width: 200px;
+	height: 25%; 
+	min-height:150px;
+	z-index: 200; 
+	position: relative; 
+	margin-right: auto;
+	margin-left: auto; 
+	visibility: hidden;
+	text-align: center;
+}
+
+#alertButton {
+	position: absolute;
+	bottom: 5px;
+}
+
+.ending {
+	background: url('../img/quotebackground.jpg') no-repeat fixed center top;
+	padding: 70px 0;
+}
+
+.quote {
+	text-align: center;
+	padding: auto;
+	margin: auto;
+	width: 50%;
+	color: white;
+}
+
+.quote h1 {
+	font-style: italic;
+}
+
+.copyright {
+	text-align: center;
+	padding: 30px 0;
+	background-color: #000099;
+	color: white;
+}
+
+.copyright p {
+	font-size: 15px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .facts { background: green }
+  .experiences { background: #3A72E2 }
+  .experiences .large-icon {color: orange}
+  .ending {background: lightblue}
+  .home-title h1 {font-size:50px;}
+  .home-title p {font-size: 20px;}
+  .aboutme h1 {font-size: 30px}
+  .aboutme p {font-size: 20px}
+  .facts h2 {font-size: 20px}
+  .facts p {font-size: 15px;}
+  .large-icon {font-size: 100px}
+  .history h1 {font-size: 30px}
+  .history p {font-size: 20px}
+  .experiences h2 {font-size: 20px}
+  .contact h1 {font-size: 30px}
+  .quote h1{font-size: 30px}
+}
