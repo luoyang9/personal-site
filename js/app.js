@@ -1,23 +1,33 @@
 (function(){
-	var app = angular.module('personal', []);
+	var app = angular.module('personal', ['ui.router']);
 
-	app.controller("PagesController", function(){
-		this.active = 1;
-		this.isActive = function(page){
-			return this.active == page;
-		};	
-		this.setActive = function(page){
-			this.active = page;
-		};
+	app.config(function($stateProvider, $urlRouterProvider){
+
+		$stateProvider.state('home', {
+			url: "/home",
+			templateUrl: 'partial-home.html',
+			controller: "HomeController"
+		})
+		.state('projects', {
+			url: "/projects",
+			templateUrl: "partial-projects.html",
+			controller: "ProjectsController"
+		})
+		.state('about', {
+			url: "/about",
+			templateUrl: "partial-about.html",
+			controller: "AboutController"
+		});
 	});
-	
 
 	app.controller("NavController", function(){
 		this.active = false;
 		this.unclicked = true;
 		this.change = function(){
+			console.log('asdf');
 			if(this.unclicked)
 			{
+				window.location.href = "/#/home"
 				this.unclicked = false;
 				$(".nav-pulse").remove();
 				this.expand();
@@ -34,8 +44,8 @@
 			{
 				this.active = true;
 				TweenLite.to($(".nav-home")[0], 0.3, {top:$(".nav-start").position().top+80});
-				TweenLite.to($(".nav-projects")[0], 0.3, {top:$(".nav-start").position().top+160});
-				TweenLite.to($(".nav-contact")[0], 0.3, {top:$(".nav-start").position().top+240});
+				TweenLite.to($(".nav-about")[0], 0.3, {top:$(".nav-start").position().top+160});
+				TweenLite.to($(".nav-projects")[0], 0.3, {top:$(".nav-start").position().top+240});
 				TweenLite.to($(".nav-resume")[0], 0.3, {top:$(".nav-start").position().top+320});
 			}
 		};
@@ -44,8 +54,8 @@
 			{
 				this.active = false;
 				TweenLite.to($(".nav-home")[0], 0.3, {top:$(".nav-start").position().top});
+				TweenLite.to($(".nav-about")[0], 0.3, {top:$(".nav-start").position().top});
 				TweenLite.to($(".nav-projects")[0], 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-contact")[0], 0.3, {top:$(".nav-start").position().top});
 				TweenLite.to($(".nav-resume")[0], 0.3, {top:$(".nav-start").position().top});
 			}
 		};
@@ -73,10 +83,44 @@
 			$(".nav-start").css("background-color", "lightblue");
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
-				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.1*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
+				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
 			}	
-			TweenLite.to($("#name")[0], 1.2, {opacity: 1});
 		}
+
+		this.init = function(){
+			var split = window.location.href.split("/");
+			if(split[split.length-1] != "" && this.unclicked) 
+			{
+				this.unclicked = false;
+				$(".nav-pulse").css("display","none");
+				this.expand();
+				this.fly();
+			}
+    	};
+    	this.init();
 	});
 
+	app.controller("HomeController", function(){
+
+	});
+
+	app.controller("ProjectsController", function(){
+		this.projects = [
+			{
+				name: "Voyagr",
+				description: "Blahblah",
+				image: "voyagr.jpg"
+			},
+			{
+				name: "GetOut!",
+				description: "Blah",
+				image: "getout.jpg"
+			}
+		];
+
+	});
+
+	app.controller("AboutController", function(){
+
+	});
 })();
