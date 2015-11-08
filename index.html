@@ -40,16 +40,13 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/angular-ui-router.min.js"></script>
 
-	<!--Preload.js-->
-	<script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
-
 	<!-- bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 	<!-- main -->
-	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 	<link href="css/main.css" rel="stylesheet">																					
 </head>
 <body>
@@ -61,10 +58,10 @@
 		<div class="nav-start nav-ball" ng-click="nav.change()" ng-mouseover="nav.expand()">
 			<div class="glyphicon glyphicon-menu-hamburger"></div>
 		</div>
-		<a href="/#/home"><div class="nav-home nav-ball">Home</div></a>
-		<a href="/#/about"><div class="nav-about nav-ball">About</div></a>
-		<a href="/#/projects"><div class="nav-projects nav-ball">Projects</div></a>
-		<a href="files/resume.pdf"><div class="nav-resume nav-ball">Resume</div></a>
+		<a href="/#/home"><div class="nav-home nav-ball" ng-click="nav.mobileShrink()">Home</div></a>
+		<a href="/#/about"><div class="nav-about nav-ball" ng-click="nav.mobileShrink()">About</div></a>
+		<a href="/#/projects"><div class="nav-projects nav-ball" ng-click="nav.mobileShrink()">Projects</div></a>
+		<a href="files/resume.pdf"><div class="nav-resume nav-ball" ng-click="nav.mobileShrink()">Resume</div></a>
 	</div>
 
 </div>

@@ -3,10 +3,13 @@
 <body>
 <div class="page-container page-fade" ng-controller="ProjectsController as projects">
 	<h1>Projects</h1>
-	<div class="projects" ng-repeat="project in projects.projects">
-		<div class="project">
+	<div class="projects container">
+		<div class="project" ng-repeat="project in projects.projects">
+			<!--Slideshow-->
+			<div class="image"
 			<h2>{{project.name}}</h2>
 			<p>{{project.description}}</p>
+			<a href="{{project.url}}">{{project.urlType}}</a>
 		</div>
 	</div>
 </div>

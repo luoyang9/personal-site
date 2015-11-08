@@ -1,13 +1,102 @@
 <html>
-<head></head>
+<head>
+	<script>
+		var canvas = document.getElementById("home-canvas");
+		canvas.width = $(window).width();
+		canvas.height = $(window).height();
+		var context = canvas.getContext("2d");
+		context.fillStyle = "#FFFFFF";
+		context.strokeStyle = '#FFFFFF';
+		context.lineWidth = 0.3;
+
+		var particles = [];
+		var maxParticles = canvas.width*canvas.height/9520;
+
+		function particle(x, y, dx, dy){
+			this.x = x;
+			this.y = y;
+			this.dx = dx;
+			this.dy = dy;
+			this.draw = function(){
+				context.beginPath();
+				context.arc(this.x, this.y, 1, 0, 2*Math.PI);
+				context.closePath();
+				context.fill();
+			};
+		}
+
+		function getSpeed() //return speed
+		{
+			if(speed > 1) console.log(speed);
+			var speed = Math.random()*1.5 - 0.75;
+			while(speed < 0.2 && speed > -0.2) speed = Math.random()*1.5 - 0.75;
+			return speed;
+		}
+
+		//clear past interval
+		clearInterval(intervalID);
+
+		var intervalID = setInterval(
+			function()
+			{
+				//screen resizing
+				if(canvas.width != $(window).width() || canvas.height != $(window).height())
+				{
+					canvas.width = $(window).width();
+					canvas.height = $(window).height();
+					context = canvas.getContext("2d");
+					context.fillStyle = "#FFFFFF";
+					context.strokeStyle = '#FFFFFF';
+					context.lineWidth = 0.3;
+					maxParticles = canvas.width*canvas.height/9520;
+				}
+
+				//clear screen
+				context.clearRect(0, 0, canvas.width, canvas.height);
+
+				for(var i = 0; i < particles.length; i++)
+				{
+					//remove particles off screen
+					if(particles[i].x < 0 || particles[i].x > canvas.width || particles[i].y < 0 || particles[i].y > canvas.height)
+						particles.splice(i, 1);
+
+					//move particles and draw
+					particles[i].x += particles[i].dx;
+					particles[i].y += particles[i].dy;
+					particles[i].draw();
+					
+					//draw lines
+					for(var j = 0; j < particles.length; j++)
+					{
+						var dist = Math.sqrt((particles[i].x-particles[j].x)*(particles[i].x-particles[j].x) + (particles[i].y-particles[j].y)*(particles[i].y-particles[j].y));
+						if(dist < 100)
+						{
+							context.beginPath();
+							context.moveTo(particles[i].x, particles[i].y);
+							context.lineTo(particles[j].x, particles[j].y);
+							context.stroke();
+						}
+					}
+				}
+
+				//add particles if # of particles < max particles
+				if(particles.length < maxParticles)
+				{ 
+					particles.push(new particle(Math.random() * $(window).width(), Math.random() * $(window).height(), getSpeed(), getSpeed()));
+				}
+			}, 50);
+	</script>
+</head>
 <body>
-<div class="page-container page-fade" ng-controller="HomeController as home">
-	<h1>Hi.<br/>I'm Charlie Zhang.</h1>
+<canvas id="home-canvas"></canvas>
+<div class="home page-container page-fade" ng-controller="HomeController as home">
+	<h1>Hi. I'm</h1>
+	<h1 id="name">Charlie Zhang</h1>
 	<div class="home-links">
-		<div class="home-link btn btn-info">Email</div>
-		<div class="home-link btn btn-info">LinkedIn</div>
-		<div class="home-link btn btn-info">Github</div>
-		<a href="/files/resume.pdf"><div class="home-link btn btn-info">Resume</div></a>
+		<a href="mailto:luoyang9@gmail.com"><div class="home-link btn btn-success"> Email </div></a>
+		<a href="https://ca.linkedin.com/pub/charlie-zhang/54/b71/65a"><div class="home-link btn btn-success">LinkedIn</div></a>
+		<a href="http://www.github.com/luoyang9"><div class="home-link btn btn-success">Github</div></a>
+		<a href="/files/resume.pdf"><div class="home-link btn btn-success">Resume</div></a>
 	</div>
 </div>
 </body>

@@ -24,7 +24,6 @@
 		this.active = false;
 		this.unclicked = true;
 		this.change = function(){
-			console.log('asdf');
 			if(this.unclicked)
 			{
 				window.location.href = "/#/home"
@@ -87,6 +86,10 @@
 			}	
 		}
 
+		this.mobileShrink = function(){
+			if($(window).width() < 600) this.change(); 
+		};
+
 		this.init = function(){
 			var split = window.location.href.split("/");
 			if(split[split.length-1] != "" && this.unclicked) 
@@ -109,12 +112,9 @@
 			{
 				name: "Voyagr",
 				description: "Blahblah",
-				image: "voyagr.jpg"
-			},
-			{
-				name: "GetOut!",
-				description: "Blah",
-				image: "getout.jpg"
+				image: "img/voyagr.png",
+				url: "http://www.myvoyagr.co",
+				urlType: "Live"
 			}
 		];
 
