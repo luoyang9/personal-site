@@ -108,13 +108,79 @@
 	});
 
 	app.controller("ProjectsController", function(){
+
+		this.isMobile = function(){
+			return $(window).width() < 600;
+		};
+
 		this.projects = [
 			{
 				name: "Voyagr",
-				description: "Blahblah",
+				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
+				hasURL: true,
 				url: "http://www.myvoyagr.co",
-				urlType: "Live"
+				urlType: "Live",
+				source: "http://github.com/rickeywang/hack2015",
+				used: [
+					"MapBox API",
+					"Google Picker API",
+					"Google Drive API"
+				]
+			},
+			{
+				name: "GetOut!",
+				description: "A web platform that matches together university students with similar physical interests. Created for the final design project for SHAD 2015.",
+				image: "img/getout.png",
+				hasURL: true,
+				url: "http://www.charliezhang.xyz/getout",
+				urlType: "Live",
+				source: "http://github.com/luoyang9/SHAD-2015-Project",
+				used: [
+					"PHP",
+					"MySQL"
+				]
+			},
+			{
+				name: "DisMahJam",
+				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015",
+				image: "img/dismahjam.png",
+				hasURL: true,
+				url: "http://www.dismahjam.xyz",
+				urlType: "Live",
+				source : "http://github.com/daniel5151/dismahjam",
+				used: [
+					"PHP",
+					"MySQL"
+				]
+			},
+			{
+				name: "Lectorial!",
+				description: "A native Android app where students can communicate with peers in the same course. Made at Tech Retreat 2015.",
+				image: "img/lectorial.png",
+				hasURL: false,
+				url: "",
+				urlType: "",
+				source: "http://github.com/HCastano/Lectorial",
+				used: [
+					"Android",
+					"PHP",
+					"University of Waterloo API"
+				]
+			},
+			{
+				name: "Green Identity",
+				description: "A company website built for Green Identity, the winning team at SHAD 2015. ",
+				image: "img/greenidentity.png",
+				hasURL: true,
+				url: "http://www.greenidentity.ca",
+				urlType: "Live",
+				source : "http://github.com/luoyang9/Green-Identity-Website",
+				used: [
+					"Bootstrap",
+					"jQuery",
+					"PHP"
+				]
 			}
 		];
 

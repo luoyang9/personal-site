@@ -5,8 +5,8 @@
 		canvas.width = $(window).width();
 		canvas.height = $(window).height();
 		var context = canvas.getContext("2d");
-		context.fillStyle = "#FFFFFF";
-		context.strokeStyle = '#FFFFFF';
+		context.fillStyle = "rgba(255, 255, 255, 0.9)";
+		context.strokeStyle = 'rgba(255, 255, 255, 0.7)';
 		context.lineWidth = 0.3;
 
 		var particles = [];
@@ -19,7 +19,7 @@
 			this.dy = dy;
 			this.draw = function(){
 				context.beginPath();
-				context.arc(this.x, this.y, 1, 0, 2*Math.PI);
+				context.arc(this.x, this.y, 1.5, 0, 2*Math.PI);
 				context.closePath();
 				context.fill();
 			};
@@ -96,6 +96,7 @@
 		<a href="mailto:luoyang9@gmail.com"><div class="home-link btn btn-success"> Email </div></a>
 		<a href="https://ca.linkedin.com/pub/charlie-zhang/54/b71/65a"><div class="home-link btn btn-success">LinkedIn</div></a>
 		<a href="http://www.github.com/luoyang9"><div class="home-link btn btn-success">Github</div></a>
+		<a href="http://devpost.com/luoyang9"><div class="home-link btn btn-success">Devpost</div></a>
 		<a href="/files/resume.pdf"><div class="home-link btn btn-success">Resume</div></a>
 	</div>
 </div>
