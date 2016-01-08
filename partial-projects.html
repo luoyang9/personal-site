@@ -4,7 +4,7 @@
 <div class="page-fade" ng-controller="ProjectsController as projects">
 	<h1>Projects</h1>
 	<br/>
-	<div class="projects container">
+	<div class="projects container-fluid">
 		<div class="row project" ng-repeat="project in projects.projects">
 			<img ng-src="{{project.image}}" class="image" />
 			<div class="col-md-12">
@@ -12,8 +12,8 @@
 				<p class="project-descrip">{{project.description}}</p>
 				<div class="use" ng-repeat="use in project.used">{{use}}</div>
 				<div>
-					<a class="btn btn-info" ng-show="project.hasURL" href="{{project.url}}">{{project.urlType}}</a>
-					<a class="btn btn-info" href="{{project.source}}">Code</a>
+					<a class="btn btn-live" ng-show="project.hasURL" href="{{project.url}}">{{project.urlType}}</a>
+					<a class="btn btn-code" href="{{project.source}}">Code</a>
 				</div>
 			</div>
 		</div>

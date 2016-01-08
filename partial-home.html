@@ -27,7 +27,6 @@
 
 		function getSpeed() //return speed
 		{
-			if(speed > 1) console.log(speed);
 			var speed = Math.random()*1.5 - 0.75;
 			while(speed < 0.2 && speed > -0.2) speed = Math.random()*1.5 - 0.75;
 			return speed;
@@ -90,14 +89,16 @@
 <body>
 <canvas id="home-canvas"></canvas>
 <div class="home page-container page-fade" ng-controller="HomeController as home">
-	<h1>Hi. I'm</h1>
-	<h1 id="name">Charlie Zhang</h1>
-	<div class="home-links">
-		<a href="mailto:luoyang9@gmail.com"><div class="home-link btn btn-success"> Email </div></a>
-		<a href="https://ca.linkedin.com/pub/charlie-zhang/54/b71/65a"><div class="home-link btn btn-success">LinkedIn</div></a>
-		<a href="http://www.github.com/luoyang9"><div class="home-link btn btn-success">Github</div></a>
-		<a href="http://devpost.com/luoyang9"><div class="home-link btn btn-success">Devpost</div></a>
-		<a href="/files/resume.pdf"><div class="home-link btn btn-success">Resume</div></a>
+	<div id="splitTextDiv">
+		<h1>Hi. I'm</h1>
+		<h1 id="name">Charlie Zhang</h1>
+		<div class="home-links">
+			<a href="mailto:luoyang9@gmail.com"><div class="home-link btn btn-success"> Email </div></a>
+			<a href="https://ca.linkedin.com/pub/charlie-zhang/54/b71/65a"><div class="home-link btn btn-success">LinkedIn</div></a>
+			<a href="http://www.github.com/luoyang9"><div class="home-link btn btn-success">Github</div></a>
+			<a href="http://devpost.com/luoyang9"><div class="home-link btn btn-success">Devpost</div></a>
+			<a href="/files/resume.pdf"><div class="home-link btn btn-success">Resume</div></a>
+		</div>
 	</div>
 </div>
 </body>

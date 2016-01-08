@@ -1,23 +1,26 @@
+"use strict";
+
 (function(){
 	var app = angular.module('personal', ['ui.router']);
 
-	app.config(function($stateProvider, $urlRouterProvider){
+	app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
-		$stateProvider.state('home', {
-			url: "/home",
-			templateUrl: 'partial-home.html',
-			controller: "HomeController"
-		})
-		.state('projects', {
-			url: "/projects",
-			templateUrl: "partial-projects.html",
-			controller: "ProjectsController"
-		})
-		.state('about', {
-			url: "/about",
-			templateUrl: "partial-about.html",
-			controller: "AboutController"
-		});
+		$stateProvider
+			.state('home', {
+				url: "/home",
+				templateUrl: 'partial-home.html',
+				controller: "HomeController"
+			})
+			.state('projects', {
+				url: "/projects",
+				templateUrl: "partial-projects.html",
+				controller: "ProjectsController"
+			})
+			.state('about', {
+				url: "/about",
+				templateUrl: "partial-about.html",
+				controller: "AboutController"
+			});
 	});
 
 	app.controller("NavController", function(){
@@ -26,7 +29,7 @@
 		this.change = function(){
 			if(this.unclicked)
 			{
-				window.location.href = "/#/home"
+				$("#trigger-home").trigger('click');
 				this.unclicked = false;
 				$(".nav-pulse").remove();
 				this.expand();
@@ -59,7 +62,11 @@
 			}
 		};
 		this.expand = function(){
-			if(this.unclicked) return;
+			if(this.unclicked) 
+			{
+				this.change();
+				return;
+			}
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
 				TweenLite.to($(".nav-ball")[i], 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
@@ -99,12 +106,14 @@
 				this.expand();
 				this.fly();
 			}
+
     	};
+
     	this.init();
 	});
 
 	app.controller("HomeController", function(){
-
+		
 	});
 
 	app.controller("ProjectsController", function(){
@@ -115,6 +124,19 @@
 
 		this.projects = [
 			{
+				name: "Unnamed Game",
+				description: "A vertical shooter game made in libGDX. Currently in development. Features different powerups, enemies, and levels.",
+				image: "img/shooter.png",
+				hasURL: false,
+				url: "",
+				urlType: "",
+				source: "http://github.com/luoyang9/shooter",
+				used: [
+					"Java",
+					"libGDX"
+				]
+			},
+			{
 				name: "Voyagr",
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
@@ -124,8 +146,7 @@
 				source: "http://github.com/rickeywang/hack2015",
 				used: [
 					"MapBox API",
-					"Google Picker API",
-					"Google Drive API"
+					"Google Picker API"
 				]
 			},
 			{
@@ -164,8 +185,7 @@
 				source: "http://github.com/HCastano/Lectorial",
 				used: [
 					"Android",
-					"PHP",
-					"University of Waterloo API"
+					"PHP"
 				]
 			},
 			{
