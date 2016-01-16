@@ -1,4 +1,4 @@
 # personal-site
-Updated personal site for Charlie Zhang. Work in progress. 
+Updated personal site for Charlie Zhang. Work in progress. Built with Angular, Greensock, and HTML5 Canvas
 
-Old one: http://www.charliezhang.xyz/old
+Live: http://www.charliezhang.xyz
