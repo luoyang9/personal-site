@@ -3,13 +3,12 @@
 (function(){
 	var app = angular.module('personal', ['ui.router']);
 
-	app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+	app.config(function($stateProvider, $urlRouterProvider){
 
 		$stateProvider
 			.state('home', {
 				url: "/home",
-				templateUrl: 'partial-home.html',
-				controller: "HomeController"
+				templateUrl: 'partial-home.html'
 			})
 			.state('projects', {
 				url: "/projects",
@@ -18,103 +17,133 @@
 			})
 			.state('about', {
 				url: "/about",
-				templateUrl: "partial-about.html",
-				controller: "AboutController"
+				templateUrl: "partial-about.html"
 			});
 	});
 
-	app.controller("NavController", function(){
-		this.active = false;
-		this.unclicked = true;
-		this.change = function(){
-			if(this.unclicked)
+	app.controller("NavController", ['$scope', function($scope){
+
+		$scope.active = false;
+		$scope.triggered = false;
+		$scope.unclicked = true;
+		$scope.mobile = false;
+
+		$scope.trigger = function(){
+			$scope.unclicked = false;
+			$scope.expand();
+			$scope.fly(true);
+		}
+
+
+		$scope.change = function(){
+			if($scope.triggered)
 			{
-				$("#trigger-home").trigger('click');
-				this.unclicked = false;
-				$(".nav-pulse").remove();
-				this.expand();
-				this.fly();
+				if($scope.active) $scope.shrink();
+				else $scope.expand();
+			}
+		};
+		$scope.activate = function(){
+			if(!$scope.active) 
+			{
+				$scope.active = true;
+				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top+80});
+				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top+160});
+				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top+240});
+				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top+320});
+			}
+		};
+		$scope.deactivate = function(){
+			if($scope.active)
+			{
+				$scope.active = false;
+				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top});
+				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top});
+				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top});
+				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top});
+			}
+		};
+		$scope.expand = function(){
+			if(!$scope.active)
+			{
+				TweenLite.to($(".nav-ball"), 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
+				$scope.activate();
+			}	
+		};
+
+		$scope.desktopExpand = function(){
+			if(!$scope.mobile)
+			{
+				if(!TweenMax.isTweening($(".nav-ball")) && !$scope.active)
+				{
+					$scope.expand();
+				}
+			}
+		}
+
+		$scope.shrink = function(){
+			if($scope.active)
+			{
+				TweenLite.to($(".nav-ball"), 0.2, {width: 50, height: 50, opacity: 0.2, color: "transparent"});
+			}
+			$scope.deactivate();
+		}
+
+		$scope.fly = function(redirect){
+			if(redirect)
+			{
+				TweenLite.to($("#outer-circle"), 1, {autoAlpha:0, display:"none"});
+				TweenLite.to($("#middle-circle"), 1, {autoAlpha:0, display:"none"});
+				TweenLite.to($("#inner-circle"), 1, {autoAlpha:0, display:"none"});
 			}
 			else
 			{
-				if(this.active) this.shrink();
-				else this.expand();
+				$("#outer-circle").hide();
+				$("#middle-circle").hide();
+				$("#inner-circle").hide();
 			}
-		};
-		this.activate = function(){
-			if(!this.active) 
-			{
-				this.active = true;
-				TweenLite.to($(".nav-home")[0], 0.3, {top:$(".nav-start").position().top+80});
-				TweenLite.to($(".nav-about")[0], 0.3, {top:$(".nav-start").position().top+160});
-				TweenLite.to($(".nav-projects")[0], 0.3, {top:$(".nav-start").position().top+240});
-				TweenLite.to($(".nav-resume")[0], 0.3, {top:$(".nav-start").position().top+320});
-			}
-		};
-		this.deactivate = function(){
-			if(this.active)
-			{
-				this.active = false;
-				TweenLite.to($(".nav-home")[0], 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-about")[0], 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-projects")[0], 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-resume")[0], 0.3, {top:$(".nav-start").position().top});
-			}
-		};
-		this.expand = function(){
-			if(this.unclicked) 
-			{
-				this.change();
-				return;
-			}
+			
+			TweenLite.to($("#bump"), 1, {autoAlpha:0, display:"none"});
+			clearTimeout(bumpTimer);
+
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
-				TweenLite.to($(".nav-ball")[i], 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
-			}
-			this.activate();
-		};
-
-		this.shrink = function(){
-			if(this.active)
-			{
-				for(var i = 0; i < $(".nav-ball").length; i++)
+				if(i != $(".nav-ball").length - 2 || !redirect)
 				{
-					TweenLite.to($(".nav-ball")[i], 0.2, {width: 25, height: 25, opacity: 0.2, color: "transparent"});
+					TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn, onComplete: function(){
+						$scope.triggered = true;
+					}});
 				}
-			}
-			this.deactivate();
-		}
-
-		this.fly = function(){
-			$(".nav-start").css("background-color", "lightblue");
-			for(var i = 0; i < $(".nav-ball").length; i++)
-			{
-				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
+				else
+				{
+					TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn, onComplete: goToHome});
+				}
 			}	
 		}
 
-		this.mobileShrink = function(){
-			if($(window).width() < 600) this.change(); 
+		$scope.mobileShrink = function(){
+			if($scope.mobile) $scope.change(); 
 		};
 
-		this.init = function(){
+		$scope.init = function(){
+			if($(window).width() < 600) $scope.mobile = true;
+
 			var split = window.location.href.split("/");
-			if(split[split.length-1] != "" && this.unclicked) 
+			if(split[split.length-1] != "" && $scope.unclicked) 
 			{
-				this.unclicked = false;
-				$(".nav-pulse").css("display","none");
-				this.expand();
-				this.fly();
+				$scope.unclicked = false;
+				$scope.expand();
+				$scope.fly(false);
 			}
+			else
+			{
+				bumpTimer = setTimeout(function(){
+					TweenLite.to($("#bump"), 1, {autoAlpha:1});
+				}, 5000);
+			}
+		};
 
-    	};
-
-    	this.init();
-	});
-
-	app.controller("HomeController", function(){
-		
-	});
+    	$scope.init();
+	}]);
 
 	app.controller("ProjectsController", function(){
 
@@ -137,6 +166,19 @@
 				]
 			},
 			{
+				name: "Personal Website",
+				description: "The new and updated website about Charlie Zhang (me).",
+				image: "img/charliezhang.png",
+				hasURL: true,
+				url: "http://www.charliezhang.xyz/",
+				urlType: "Live",
+				source: "http://github.com/luoyang9/personal-site",
+				used: [
+					"AngularJS",
+					"GreenSock"
+				]
+			},
+			{
 				name: "Voyagr",
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
@@ -150,12 +192,26 @@
 				]
 			},
 			{
+				name: "MyoMusic",
+				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015",
+				image: "img/myomusic.png",
+				hasURL: true,
+				url: "http://www.myomusic.ga",
+				urlType: "Live",
+				source: "http://github.com/luoyang9/MyoDDR",
+				used: [
+					"Myo.js",
+					"AngularJS",
+					"GreenSock"
+				]
+			},
+			{
 				name: "GetOut!",
 				description: "A web platform that matches together university students with similar physical interests. Created for the final design project for SHAD 2015.",
 				image: "img/getout.png",
 				hasURL: true,
 				url: "http://www.charliezhang.xyz/getout",
-				urlType: "Live",
+				urlType: "Demo",
 				source: "http://github.com/luoyang9/SHAD-2015-Project",
 				used: [
 					"PHP",
@@ -203,10 +259,6 @@
 				]
 			}
 		];
-
-	});
-
-	app.controller("AboutController", function(){
 
 	});
 })();

@@ -1,8 +1,71 @@
+@font-face {
+    font-family: 'nexaLight';
+    src: url('../fonts/NexaLight.otf');
+}
+
+@font-face {
+    font-family: 'nexaBold';
+    src: url('../fonts/NexaBold.otf');
+}
+
 html, body {
 	padding:0;
 	margin:0;
 	height: 100%;
 	width: 100%;
+}
+
+#bump {
+	opacity: 0;
+	color: white;
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	font-family: 'nexaLight', 'Arial', sans-serif;
+	font-size: 14px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.loop-circle {
+ 	background-color: rgba(0,0,0,0);
+    opacity: .9;
+	border-radius: 50%;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom: 0;
+	margin: auto;
+}
+
+#outer-circle {
+    border: 1px solid rgba(255,255,255,0.9);
+    border-top: 1px solid rgba(0,0,0,0);
+    border-left: 1px solid rgba(0,0,0,0);
+    width: 600px;
+    height: 600px;
+    -moz-animation: spin 1.3s infinite linear;
+    -webkit-animation: spin 1.3s infinite linear;
+}
+
+#middle-circle {
+    border: 1px solid rgba(255,255,255,0.9);
+    border-bottom: 1px solid rgba(0,0,0,0);
+    border-left: 1px solid rgba(0,0,0,0);
+    width: 400px;
+    height: 400px;
+    -moz-animation: spinoff 1.3s infinite linear;
+    -webkit-animation: spinoff 1.3s infinite linear;
+}
+
+#inner-circle {
+    border: 1px solid rgba(255,255,255,0.9);
+    border-right: 1px solid rgba(0,0,0,0);
+    border-bottom: 1px solid rgba(0,0,0,0);
+    width: 200px;
+    height: 200px;
+    -moz-animation: spin 1.3s infinite linear;
+    -webkit-animation: spin 1.3s infinite linear;
 }
 
 .nav-ball {
@@ -12,7 +75,6 @@ html, body {
 	height:50px;
 	line-height: 75px;
 	font-size: 16px;
-	border: 0px solid white;
 	border-radius: 50%;
 	position:fixed;
 	top:0;
@@ -21,14 +83,20 @@ html, body {
 	bottom: 0;
 	margin: auto;
 	cursor: pointer;
+	font-family: "nexaLight", "Arial", sans-serif;
+}
+
+.nav-init {
+	width: 52px;
+	height: 52px;
+	background-color: white;
+	z-index: 7;
 }
 
 .nav-start {
-	width:52px;
-	height:52px;
-	background-color: white;
-	z-index: 6;
+	background-color: #0066ff;
 	font-size: 17px;
+	z-index: 6;
 }
 
 .nav-pulse {
@@ -54,19 +122,19 @@ html, body {
 
 
 .nav-home {
-	background-color: lightgreen;
+	background-color: #009900;
 }
 
 .nav-projects {
-	background-color: orange;
+	background-color: #e68a00;
 }
 
 .nav-about {
-	background-color: pink;
+	background-color: #e6b800;
 }
 
 .nav-resume {
-	background-color: purple;
+	background-color: #9900ff;
 }
 
 .wrapper {
@@ -80,17 +148,23 @@ html, body {
 	height: 100%;
 }
 
-.page {
+#background-container {
+	width: 100%;
+	height: 100%;
+	animation: backgroundChange 16s infinite;
 	background-color: #2DBEED;
+}
+
+.page {
 	color: white;
 	width: 100%;
 	height: 100%;
-	font-size: "Arial", sans-serif;
-	animation: backgroundChange 16s infinite;
+	font-family: "nexaLight", "Arial", sans-serif;
 	overflow-y: auto;
 }
 
 .page h1{
+	font-family: "nexaBold", "Arial", sans-serif;
 	text-align: center;
 }
 
@@ -99,8 +173,8 @@ html, body {
 }
 
 #name {
-	font-size:45px;
-	margin-bottom: 35px;
+	font-size:55px;
+	margin-bottom: 30px;
 }
 
 .home {
@@ -257,4 +331,44 @@ html, body {
     -webkit-transform: scale(1.5);
     opacity: 0.0;
  }
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-moz-keyframes spinoff {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(-360deg);
+    };
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinoff {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-360deg);
+    };
 }
