@@ -83,7 +83,7 @@ html, body {
 	bottom: 0;
 	margin: auto;
 	cursor: pointer;
-	font-family: "nexaLight", "Arial", sans-serif;
+	font-family: "nexaBold", "Arial", sans-serif;
 }
 
 .nav-init {
@@ -135,6 +135,24 @@ html, body {
 
 .nav-resume {
 	background-color: #9900ff;
+}
+
+.nav-label {
+	display: block;
+	margin: 0;
+	padding: 0;
+	line-height: 25px
+}
+
+.mega-octicon {
+	display: block;
+	margin-top: 22px;
+}
+
+.octicon {
+	display: block;
+	margin: 17px 0 0 0;
+	padding: 0;
 }
 
 .wrapper {
@@ -210,6 +228,10 @@ html, body {
 	width: 75%;
 }
 
+.bold {
+	font-family: "nexaBold", "Arial", sans-serif;
+}
+
 .image {
 	position: absolute;
     left: 0;
@@ -245,10 +267,12 @@ html, body {
 
 .btn-live {
 	background-color: #3AE03D;
+	color: white;
 }
 
 .btn-code {
 	background-color: #E3B039;
+	color: white;
 }
 
 .use {

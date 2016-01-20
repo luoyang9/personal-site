@@ -12,12 +12,12 @@
 		<div class="row project" ng-repeat="project in projects.projects">
 			<img ng-src="{{project.image}}" class="image" />
 			<div class="col-md-12">
-				<h2>{{project.name}}</h2>
+				<h2 class="bold">{{project.name}}</h2>
 				<p class="project-descrip">{{project.description}}</p>
 				<div class="use" ng-repeat="use in project.used">{{use}}</div>
 				<div>
-					<a class="btn btn-live" ng-show="project.hasURL" href="{{project.url}}">{{project.urlType}}</a>
-					<a class="btn btn-code" href="{{project.source}}">Code</a>
+					<a class="btn btn-live bold" ng-show="project.hasURL" href="{{project.url}}">{{project.urlType}}</a>
+					<a class="btn btn-code bold" href="{{project.source}}">Code</a>
 				</div>
 			</div>
 		</div>

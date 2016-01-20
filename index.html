@@ -15,7 +15,7 @@
     <meta property="og:site_name" content="Charlie Zhang - A Software Engineering Student at the University of Waterloo" />
     <meta property="og:url" content="http://www.charliezhang.xyz/" />
     <meta property="og:description" content="A software engineering student at the University of Waterloo" />
-
+	
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -49,8 +49,9 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
 
-	<!--Preload-->
-	<script type="text/javascript" src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
+	<!--Fonts-->
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href="octicons/octicons.css" rel="stylesheet">			
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -74,12 +75,24 @@
 		<div id="inner-circle" class="loop-circle" ng-hide="mobile"></div>
 		<div class="nav-pulse" ng-show="unclicked"></div>
 		<div class="nav-start nav-ball" ng-click="change()" ng-mouseover="desktopExpand()">
-			<div class="glyphicon glyphicon-menu-hamburger"></div>
+			<span display="block" class="mega-octicon octicon-three-bars"></span>
 		</div>
-		<a id="trigger-home" ui-sref="home"><div class="nav-home nav-ball" ng-click="mobileShrink()">Home</div></a>
-		<a ui-sref="about"><div class="nav-about nav-ball" ng-click="mobileShrink()">About</div></a>
-		<a ui-sref="projects"><div class="nav-projects nav-ball" ng-click="mobileShrink()">Projects</div></a>
-		<a href="files/resume.pdf"><div class="nav-resume nav-ball" ng-click="mobileShrink()">Resume</div></a>
+		<a id="trigger-home" ui-sref="home"><div class="nav-home nav-ball" ng-click="mobileShrink()">
+			<div class="octicon octicon-home"></div> 
+			<div class="nav-label">Home</div>
+		</div></a>
+		<a ui-sref="about"><div class="nav-about nav-ball" ng-click="mobileShrink()">
+			<span class="octicon octicon-person"></span> 
+			<span class="nav-label">About</span>
+		</div></a>
+		<a ui-sref="projects"><div class="nav-projects nav-ball" ng-click="mobileShrink()">
+			<span class="octicon octicon-gist"></span> 
+			<span class="nav-label">Projects</span>
+		</div></a>
+		<a href="files/resume.pdf"><div class="nav-resume nav-ball" ng-click="mobileShrink()">
+			<span class="octicon octicon-file-text"></span> 
+			<span class="nav-label">Resume</span>
+		</div></a>
 		<div class="nav-init nav-ball" ng-show="unclicked" ng-click="trigger()" ng-mouseover="trigger()"></div>
 	</div>
 

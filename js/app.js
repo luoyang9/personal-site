@@ -153,7 +153,7 @@
 
 		this.projects = [
 			{
-				name: "Unnamed Game",
+				name: "Vertical Shooter Game",
 				description: "A vertical shooter game made in libGDX. Currently in development. Features different powerups, enemies, and levels.",
 				image: "img/shooter.png",
 				hasURL: false,
@@ -175,7 +175,8 @@
 				source: "http://github.com/luoyang9/personal-site",
 				used: [
 					"AngularJS",
-					"GreenSock"
+					"GreenSock",
+					"HTML5 Canvas"
 				]
 			},
 			{
@@ -188,7 +189,8 @@
 				source: "http://github.com/rickeywang/hack2015",
 				used: [
 					"MapBox API",
-					"Google Picker API"
+					"Google Picker API",
+					"Google Sign-In API"
 				]
 			},
 			{
@@ -215,7 +217,8 @@
 				source: "http://github.com/luoyang9/SHAD-2015-Project",
 				used: [
 					"PHP",
-					"MySQL"
+					"MySQL",
+					"Bootstrap"
 				]
 			},
 			{
@@ -228,7 +231,8 @@
 				source : "http://github.com/daniel5151/dismahjam",
 				used: [
 					"PHP",
-					"MySQL"
+					"MySQL",
+					"jQuery"
 				]
 			},
 			{
