@@ -3,11 +3,11 @@
 <head>    
 	<meta charset="utf-8">
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<title>Charlie Zhang</title>
 
-	<meta name="description" content="Hi, I'm a software engineering student at the University of Waterloo. As you can guess, I like to code things.">
+	<meta name="description" content="Hi, I'm a software engineering student at the University of Waterloo. I like to code things.">
 
     <!--open graph-->
     <meta property="og:type" content="website" />
@@ -54,7 +54,7 @@
 
 	<!--Fonts-->
 	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href="octicons/octicons.css" rel="stylesheet">			
+	<link href="octicons/octicons.css" rel="stylesheet">
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -71,32 +71,35 @@
 		<div class="page container-fluid" ui-view></div>
 	</div>
 
-	<div class="nav" id="nav-control" ng-controller="NavController">
-		<div id="bump">Psst. Click the circle to see awesome things!</div>
-		<div id="outer-circle" class="loop-circle" ng-hide="mobile"></div>
-		<div id="middle-circle" class="loop-circle" ng-hide="mobile"></div>
-		<div id="inner-circle" class="loop-circle" ng-hide="mobile"></div>
+	<div ng-controller="NavController">
+
+		<div id="outer-circle" class="loop-circle"></div>
+		<div id="middle-circle" class="loop-circle"></div>
+		<div id="inner-circle" class="loop-circle"></div>
+
 		<div class="nav-pulse" ng-show="unclicked"></div>
-		<div class="nav-start nav-ball" ng-click="change()" ng-mouseover="desktopExpand()">
+
+		<div class="nav-start nav-ball" ng-hide="unclicked" ng-click="change()" ng-mouseover="desktopExpand()">
 			<span display="block" class="mega-octicon octicon-three-bars"></span>
 		</div>
-		<a id="trigger-home" ui-sref="home"><div class="nav-home nav-ball" ng-click="mobileShrink()">
+		<a id="trigger-home" ui-sref="home"><div class="nav-ball nav-home" ng-hide="unclicked" ng-click="mobileShrink()">
 			<div class="octicon octicon-home"></div> 
 			<div class="nav-label">Home</div>
 		</div></a>
-		<a ui-sref="about"><div class="nav-about nav-ball" ng-click="mobileShrink()">
+		<a ui-sref="about"><div class="nav-ball nav-about" ng-hide="unclicked" ng-click="mobileShrink()">
 			<span class="octicon octicon-person"></span> 
 			<span class="nav-label">About</span>
 		</div></a>
-		<a ui-sref="projects"><div class="nav-projects nav-ball" ng-click="mobileShrink()">
+		<a ui-sref="projects"><div class="nav-ball nav-projects" ng-hide="unclicked" ng-click="mobileShrink()">
 			<span class="octicon octicon-gist"></span> 
 			<span class="nav-label">Projects</span>
 		</div></a>
-		<a href="files/resume.pdf"><div class="nav-resume nav-ball" ng-click="mobileShrink()">
+		<a href="files/resume.pdf"><div class="nav-ball nav-resume" ng-hide="unclicked" ng-click="mobileShrink()">
 			<span class="octicon octicon-file-text"></span> 
 			<span class="nav-label">Resume</span>
 		</div></a>
-		<div class="nav-init nav-ball" ng-show="unclicked" ng-click="trigger()" ng-mouseover="trigger()"></div>
+
+		<div class="nav-ball nav-init" ng-show="unclicked" ng-click="trigger()"></div>
 	</div>
 
 </div>

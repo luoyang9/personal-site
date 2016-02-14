@@ -102,8 +102,6 @@
 				$("#inner-circle").hide();
 			}
 			
-			TweenLite.to($("#bump"), 1, {autoAlpha:0, display:"none"});
-			clearTimeout(bumpTimer);
 
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
@@ -136,9 +134,22 @@
 			}
 			else
 			{
-				bumpTimer = setTimeout(function(){
-					TweenLite.to($("#bump"), 1, {autoAlpha:1});
-				}, 5000);
+				console.log("PRELOADING");
+				var preload = new createjs.LoadQueue();
+				preload.on("complete", handleComplete, this);
+				preload.loadManifest([
+			     {src:"img/charliezhang.png"},
+			     {src:"img/dismahjam.png"},
+			     {src:"img/getout.png"},
+			     {src:"img/greenidentity.png"},
+			     {src:"img/lectorial.png"},
+			     {src:"img/myomusic.png"},
+			     {src:"img/shooter.png"},
+			     {src:"img/voyagr.png"},
+			     {src:"partial-home.html"},
+			     {src:"partial-about.html"},
+			     {src:"partial-projects.html"}
+			 	]);
 			}
 		};
 
@@ -166,20 +177,6 @@
 				]
 			},
 			{
-				name: "Personal Website",
-				description: "The new and updated website about Charlie Zhang (me).",
-				image: "img/charliezhang.png",
-				hasURL: true,
-				url: "http://www.charliezhang.xyz/",
-				urlType: "Live",
-				source: "http://github.com/luoyang9/personal-site",
-				used: [
-					"AngularJS",
-					"GreenSock",
-					"HTML5 Canvas"
-				]
-			},
-			{
 				name: "Voyagr",
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
@@ -194,17 +191,31 @@
 				]
 			},
 			{
-				name: "MyoMusic",
-				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015",
-				image: "img/myomusic.png",
+				name: "OfflineBling",
+				description: "OfflineBling allows users to query popular sites like Wikipedia and Wolfram Alpha offline, without WiFi, or data. Created at UofTHacks 2016.",
+				image: "img/offlinebling.png",
 				hasURL: true,
-				url: "http://www.myomusic.ga",
-				urlType: "Live",
-				source: "http://github.com/luoyang9/MyoDDR",
+				url: "https://www.youtube.com/watch?v=NVjwlWY4EpM",
+				urlType: "Video",
+				source: "http://github.com/utk9/OfflineBling",
 				used: [
-					"Myo.js",
+					"Twilio API",
+					"PHP",
+					"Android"
+				]
+			},
+			{
+				name: "Personal Website",
+				description: "The new and updated website about Charlie Zhang (me).",
+				image: "img/charliezhang.png",
+				hasURL: true,
+				url: "http://www.charliezhang.xyz/",
+				urlType: "Live",
+				source: "http://github.com/luoyang9/personal-site",
+				used: [
 					"AngularJS",
-					"GreenSock"
+					"GreenSock",
+					"HTML5 Canvas"
 				]
 			},
 			{
@@ -222,8 +233,22 @@
 				]
 			},
 			{
+				name: "MyoMusic",
+				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015.",
+				image: "img/myomusic.png",
+				hasURL: true,
+				url: "http://www.myomusic.ga",
+				urlType: "Live",
+				source: "http://github.com/luoyang9/MyoDDR",
+				used: [
+					"Myo.js",
+					"AngularJS",
+					"GreenSock"
+				]
+			},
+			{
 				name: "DisMahJam",
-				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015",
+				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015. (Note: The terribleness of this project was intended)",
 				image: "img/dismahjam.png",
 				hasURL: true,
 				url: "http://www.dismahjam.xyz",

@@ -16,8 +16,8 @@
 				<p class="project-descrip">{{project.description}}</p>
 				<div class="use" ng-repeat="use in project.used">{{use}}</div>
 				<div>
-					<a class="btn btn-live bold" ng-show="project.hasURL" href="{{project.url}}">{{project.urlType}}</a>
-					<a class="btn btn-code bold" href="{{project.source}}">Code</a>
+					<a href="{{project.source}}"><div class="code btn-material">Code</div></a>
+					<a ng-show="project.hasURL" href="{{project.url}}"><div class="live btn-material">{{project.urlType}}</div></a>
 				</div>
 			</div>
 		</div>
