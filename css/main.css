@@ -201,6 +201,7 @@ body {
 .page-fade {
  	animation: fadeIn 1s 1;
  	width: 100%;
+ 	position: relative;
 }
 						
 .home-links{
