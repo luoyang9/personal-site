@@ -13,7 +13,9 @@
 			.state('projects', {
 				url: "/projects",
 				templateUrl: "partial-projects.html",
-				controller: "ProjectsController"
+				controller: "ProjectsController",
+				controllerAs: "projects"
+
 			})
 			.state('about', {
 				url: "/about",
@@ -21,125 +23,100 @@
 			});
 	});
 
-	app.controller("NavController", ['$scope', function($scope){
+	app.controller("NavController", function(){
 
-		$scope.active = false;
-		$scope.triggered = false;
-		$scope.unclicked = true;
-		$scope.mobile = false;
+		this.active = false;
+		this.unclicked = true;
+		this.mobile = false;
 
-		$scope.trigger = function(){
-			$scope.unclicked = false;
-			$scope.expand();
-			$scope.fly(true);
+		this.trigger = function(){
+			this.unclicked = false;
+			this.activate();
+			this.fly();
+			window.location = "#/home";
 		}
 
-
-		$scope.change = function(){
-			if($scope.triggered)
-			{
-				if($scope.active) $scope.shrink();
-				else $scope.expand();
-			}
+		this.change = function(){
+			if(this.active) this.shrink();
+			else this.expand();
 		};
-		$scope.activate = function(){
-			if(!$scope.active) 
+		this.activate = function(){
+			if(!this.active) 
 			{
-				$scope.active = true;
+				this.active = true;
 				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top+80});
 				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top+160});
 				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top+240});
 				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top+320});
 			}
 		};
-		$scope.deactivate = function(){
-			if($scope.active)
+		this.deactivate = function(){
+			if(this.active)
 			{
-				$scope.active = false;
+				this.active = false;
 				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top});
 				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top});
 				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top});
 				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top});
 			}
 		};
-		$scope.expand = function(){
-			if(!$scope.active)
-			{
-				TweenLite.to($(".nav-ball"), 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
-				$scope.activate();
-			}	
+		this.expand = function(){
+			TweenLite.to($(".nav-ball"), 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
+			this.activate();
 		};
 
-		$scope.desktopExpand = function(){
-			if(!$scope.mobile)
+		this.desktopExpand = function(){
+			if(!this.mobile)
 			{
-				if(!TweenMax.isTweening($(".nav-ball")) && !$scope.active)
+				if(!TweenMax.isTweening($(".nav-ball")))
 				{
-					$scope.expand();
+					this.expand();
 				}
 			}
 		}
 
-		$scope.shrink = function(){
-			if($scope.active)
-			{
-				TweenLite.to($(".nav-ball"), 0.2, {width: 50, height: 50, opacity: 0.2, color: "transparent"});
-			}
-			$scope.deactivate();
+		this.shrink = function(){
+			TweenLite.to($(".nav-ball"), 0.2, {width: 50, height: 50, opacity: 0.2, color: "transparent"});
+			this.deactivate();
 		}
 
-		$scope.fly = function(redirect){
-			if(redirect)
-			{
-				TweenLite.to($("#outer-circle"), 1, {autoAlpha:0, display:"none"});
-				TweenLite.to($("#middle-circle"), 1, {autoAlpha:0, display:"none"});
-				TweenLite.to($("#inner-circle"), 1, {autoAlpha:0, display:"none"});
-			}
-			else
-			{
-				$("#outer-circle").hide();
-				$("#middle-circle").hide();
-				$("#inner-circle").hide();
-			}
+		this.fly = function(){
+			TweenLite.to($("#outer-circle"), 1, {autoAlpha:0, display:"none"});
+			TweenLite.to($("#middle-circle"), 1, {autoAlpha:0, display:"none"});
+			TweenLite.to($("#inner-circle"), 1, {autoAlpha:0, display:"none"});
 			
 
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
-				if(i != $(".nav-ball").length - 2 || !redirect)
-				{
-					TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn, onComplete: function(){
-						$scope.triggered = true;
-					}});
-				}
-				else
-				{
-					TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn, onComplete: goToHome});
-				}
+				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
 			}	
 		}
 
-		$scope.mobileShrink = function(){
-			if($scope.mobile) $scope.change(); 
+		this.mobileShrink = function(){
+			if(this.mobile) this.change(); 
 		};
 
-		$scope.init = function(){
-			if($(window).width() < 600) $scope.mobile = true;
+		this.init = function(){
+			if($(window).width() < 600) this.mobile = true;
 
 			var split = window.location.href.split("/");
-			if(split[split.length-1] != "" && $scope.unclicked) 
+			if(split[split.length-1] != "") 
 			{
-				$scope.unclicked = false;
-				$scope.expand();
-				$scope.fly(false);
+				this.unclicked = false;
+				this.activate();
+				this.fly();
 			}
 			else
 			{
 				console.log("PRELOADING");
 				var preload = new createjs.LoadQueue();
-				preload.on("complete", handleComplete, this);
+				preload.on("complete", function(){
+					$(".nav-init")[0].click();
+				}, this);
 				preload.loadManifest([
 			     {src:"img/charliezhang.png"},
 			     {src:"img/dismahjam.png"},
+			     {src:"img/offlinebling.png"},
 			     {src:"img/getout.png"},
 			     {src:"img/greenidentity.png"},
 			     {src:"img/lectorial.png"},
@@ -153,18 +130,14 @@
 			}
 		};
 
-    	$scope.init();
-	}]);
+    	this.init();
+	});
 
 	app.controller("ProjectsController", function(){
-
-		this.isMobile = function(){
-			return $(window).width() < 600;
-		};
-
 		this.projects = [
 			{
 				name: "Vertical Shooter Game",
+				date: "2016-02-14",
 				description: "A vertical shooter game made in libGDX. Currently in development. Features different powerups, enemies, and levels.",
 				image: "img/shooter.png",
 				hasURL: false,
@@ -181,6 +154,7 @@
 			},
 			{
 				name: "Voyagr",
+				date: "2015-09-20",
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
 				hasURL: true,
@@ -198,6 +172,7 @@
 			},
 			{
 				name: "OfflineBling",
+				date: "2016-01-24",
 				description: "OfflineBling allows users to query popular sites like Wikipedia and Wolfram Alpha offline, without WiFi, or data. Created at UofTHacks 2016.",
 				image: "img/offlinebling.png",
 				hasURL: true,
@@ -215,6 +190,7 @@
 			},
 			{
 				name: "Personal Website",
+				date: "2016-02-13",
 				description: "The new and updated website about Charlie Zhang (me).",
 				image: "img/charliezhang.png",
 				hasURL: true,
@@ -229,6 +205,7 @@
 			},
 			{
 				name: "GetOut!",
+				date: "2015-07-30",
 				description: "A web platform that matches together university students with similar physical interests. Created for the final design project for SHAD 2015.",
 				image: "img/getout.png",
 				hasURL: true,
@@ -246,6 +223,7 @@
 			},
 			{
 				name: "MyoMusic",
+				date: "2015-11-15",
 				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015.",
 				image: "img/myomusic.png",
 				hasURL: true,
@@ -263,6 +241,7 @@
 			},
 			{
 				name: "DisMahJam",
+				date: "2015-10-04",
 				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015. (Note: The terribleness of this project was intended)",
 				image: "img/dismahjam.png",
 				hasURL: true,
@@ -280,6 +259,7 @@
 			},
 			{
 				name: "Lectorial!",
+				date: "2015-08-15",
 				description: "A native Android app where students can communicate with peers in the same course. Made at Tech Retreat 2015.",
 				image: "img/lectorial.png",
 				hasURL: false,
@@ -296,6 +276,7 @@
 			},
 			{
 				name: "Green Identity",
+				date: "2015-08-25",
 				description: "A company website built for Green Identity, the winning team at SHAD 2015. ",
 				image: "img/greenidentity.png",
 				hasURL: true,

@@ -46,8 +46,8 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 
 	<!--Angular-->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.17/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
 
 	<!--PreloadJS-->
 	<script type="text/javascript" src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
@@ -62,7 +62,6 @@
 
 	<!-- main -->
 	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
 	<link href="css/main.css" rel="stylesheet">																					
 </head>
 <body>
@@ -71,35 +70,35 @@
 		<div class="page container-fluid" ui-view></div>
 	</div>
 
-	<div ng-controller="NavController">
+	<div ng-controller="NavController as nav">
 
 		<div id="outer-circle" class="loop-circle"></div>
 		<div id="middle-circle" class="loop-circle"></div>
 		<div id="inner-circle" class="loop-circle"></div>
 
-		<div class="nav-pulse" ng-show="unclicked"></div>
+		<div class="nav-pulse" ng-show="nav.unclicked"></div>
 
-		<div class="nav-start nav-ball" ng-hide="unclicked" ng-click="change()" ng-mouseover="desktopExpand()">
+		<div class="nav-start nav-ball" ng-hide="nav.unclicked" ng-click="nav.change()" ng-mouseover="nav.desktopExpand()">
 			<span display="block" class="mega-octicon octicon-three-bars"></span>
 		</div>
-		<a id="trigger-home" ui-sref="home"><div class="nav-ball nav-home" ng-hide="unclicked" ng-click="mobileShrink()">
+		<a ui-sref="home" id="trigger-home"><div class="nav-ball nav-home" ng-hide="nav.unclicked" ng-click="nav.mobileShrink()">
 			<div class="octicon octicon-home"></div> 
 			<div class="nav-label">Home</div>
 		</div></a>
-		<a ui-sref="about"><div class="nav-ball nav-about" ng-hide="unclicked" ng-click="mobileShrink()">
+		<a ui-sref="about"><div class="nav-ball nav-about" ng-hide="nav.unclicked" ng-click="nav.mobileShrink()">
 			<span class="octicon octicon-person"></span> 
 			<span class="nav-label">About</span>
 		</div></a>
-		<a ui-sref="projects"><div class="nav-ball nav-projects" ng-hide="unclicked" ng-click="mobileShrink()">
+		<a ui-sref="projects"><div class="nav-ball nav-projects" ng-hide="nav.unclicked" ng-click="nav.mobileShrink()">
 			<span class="octicon octicon-gist"></span> 
 			<span class="nav-label">Projects</span>
 		</div></a>
-		<a href="files/resume.pdf"><div class="nav-ball nav-resume" ng-hide="unclicked" ng-click="mobileShrink()">
+		<a href="files/resume.pdf"><div class="nav-ball nav-resume" ng-hide="nav.unclicked" ng-click="nav.mobileShrink()">
 			<span class="octicon octicon-file-text"></span> 
 			<span class="nav-label">Resume</span>
 		</div></a>
 
-		<div class="nav-ball nav-init" ng-show="unclicked" ng-click="trigger()"></div>
+		<div class="nav-ball nav-init" ng-show="nav.unclicked" ng-click="nav.trigger()"></div>
 	</div>
 
 </div>
