@@ -174,6 +174,9 @@
 				used: [
 					"Java",
 					"libGDX"
+				],
+				tags: [
+					"android", "video", "game", "gaming", "arcade", "shooter"
 				]
 			},
 			{
@@ -188,6 +191,9 @@
 					"MapBox API",
 					"Google Picker API",
 					"Google Sign-In API"
+				],
+				tags: [
+					"Hack The North", "hackathon", "frontend", "web app"
 				]
 			},
 			{
@@ -202,6 +208,9 @@
 					"Twilio API",
 					"PHP",
 					"Android"
+				],
+				tags: [
+					"UofTHacks", "hackathon", "app", "backend"
 				]
 			},
 			{
@@ -230,6 +239,9 @@
 					"PHP",
 					"MySQL",
 					"Bootstrap"
+				],
+				tags: [
+					"SHAD", "web app", "fitness", "matchmaking"
 				]
 			},
 			{
@@ -244,6 +256,9 @@
 					"Myo.js",
 					"AngularJS",
 					"GreenSock"
+				],
+				tags: [
+					"EngHack", "hackathon", "web app", "music"
 				]
 			},
 			{
@@ -258,6 +273,9 @@
 					"PHP",
 					"MySQL",
 					"jQuery"
+				],
+				tags: [
+					"TerribleHack", "hackathon", "terrible", "jam", "tinder"
 				]
 			},
 			{
@@ -271,6 +289,9 @@
 				used: [
 					"Android",
 					"PHP"
+				],
+				tags: [
+					"Tech Retreat", "hackathon", "app", "lectures", "university"
 				]
 			},
 			{
@@ -285,9 +306,23 @@
 					"Bootstrap",
 					"jQuery",
 					"PHP"
+				],
+				tags: [
+					"SHAD", "website", "frontend", "design"
 				]
 			}
 		];
 
 	});
 })();
+
+
+function goToHome()
+{
+	$("#trigger-home").trigger('click');
+}
+
+function handleComplete()
+{
+	$(".nav-init")[0].click();
+}
