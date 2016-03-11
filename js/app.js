@@ -158,7 +158,7 @@
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
 				hasURL: true,
-				url: "http://www.myvoyagr.co",
+				url: "http://www.charliezhang.xyz/myvoyagr",
 				urlType: "Live",
 				source: "http://github.com/rickeywang/hack2015",
 				used: [
@@ -227,7 +227,7 @@
 				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015.",
 				image: "img/myomusic.png",
 				hasURL: true,
-				url: "http://www.myomusic.ga",
+				url: "http://www.charliezhang.xyz/myomusic",
 				urlType: "Live",
 				source: "http://github.com/luoyang9/MyoDDR",
 				used: [
@@ -245,7 +245,7 @@
 				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015. (Note: The terribleness of this project was intended)",
 				image: "img/dismahjam.png",
 				hasURL: true,
-				url: "http://www.dismahjam.xyz",
+				url: "http://www.charliezhang.xyz/dismahjam",
 				urlType: "Live",
 				source : "http://github.com/daniel5151/dismahjam",
 				used: [
@@ -280,7 +280,7 @@
 				description: "A company website built for Green Identity, the winning team at SHAD 2015. ",
 				image: "img/greenidentity.png",
 				hasURL: true,
-				url: "http://www.greenidentity.ca",
+				url: "http://www.charliezhang.xyz/greenidentity",
 				urlType: "Live",
 				source : "http://github.com/luoyang9/Green-Identity-Website",
 				used: [
