@@ -164,10 +164,30 @@
 				used: [
 					"MapBox API",
 					"Google Picker API",
-					"Google Sign-In API"
+					"Google Sign-In API",
+					"Google App Engine"
 				],
 				tags: [
 					"Hack The North", "hackathon", "frontend", "web app"
+				]
+			},
+			{
+				name: "Edibit",
+				date: "2016-03-12",
+				description: "Edibit is a web and mobile app where users can buy and sell food at cheap prices. Perfect for when you order too many wings for Friday's party. Created at NHacks 16.",
+				image: "img/edibit.png",
+				hasURL: true,
+				url: "http://www.edibit.org",
+				urlType: "Live",
+				source: "http://github.com/utk9/edibit",
+				used: [
+					"AngularJS",
+					"PHP",
+					"MySQL",
+					"Clarifai"
+				],
+				tags: [
+					"NHacks 16", "hackathon", "frontend", "web app", "backend"
 				]
 			},
 			{
@@ -182,6 +202,7 @@
 				used: [
 					"Twilio API",
 					"PHP",
+					"MySQL",
 					"Android"
 				],
 				tags: [

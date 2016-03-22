@@ -3,8 +3,6 @@
 	canvas.width = $(window).width();
 	canvas.height = $(window).height();
 	var context = canvas.getContext("2d");
-	context.fillStyle = "rgba(255, 255, 255, 0.9)";
-	context.strokeStyle = 'rgba(255, 255, 255, 0.7)';
 	context.lineWidth = 0.3;
 
 	var particles = [];
@@ -15,9 +13,11 @@
 		this.y = y;
 		this.dx = dx;
 		this.dy = dy;
+		this.r = Math.random() * 1.5 + 1.75;
+		this.a = 0.01;
 		this.draw = function(){
 			context.beginPath();
-			context.arc(this.x, this.y, 2, 0, 2*Math.PI);
+			context.arc(this.x, this.y, this.r, 0, 2*Math.PI);
 			context.closePath();
 			context.fill();
 		};
@@ -42,20 +42,22 @@
 				canvas.width = $(window).width();
 				canvas.height = $(window).height();
 				context = canvas.getContext("2d");
-				context.fillStyle = "#FFFFFF";
-				context.strokeStyle = '#FFFFFF';
-				context.lineWidth = 0.2;
 				maxParticles = canvas.width*canvas.height/9520;
 			}
+
+			context.fillStyle = 'rgba(255, 255, 255, 0.7)';
+			context.strokeStyle = "#FFFFFF";
 
 			//clear screen
 			context.clearRect(0, 0, canvas.width, canvas.height);
 
 			for(var i = 0; i < particles.length; i++)
 			{
-				//remove particles off screen
+				//fade particles off screen
 				if(particles[i].x < 0 || particles[i].x > canvas.width || particles[i].y < 0 || particles[i].y > canvas.height)
+				{
 					particles.splice(i, 1);
+				}
 
 				//move particles and draw
 				particles[i].x += particles[i].dx;
@@ -63,11 +65,13 @@
 				particles[i].draw();
 				
 				//draw lines
-				for(var j = 0; j < particles.length; j++)
+				for(var j = i+1; j < particles.length; j++)
 				{
 					var dist = Math.sqrt((particles[i].x-particles[j].x)*(particles[i].x-particles[j].x) + (particles[i].y-particles[j].y)*(particles[i].y-particles[j].y));
-					if(dist < 100)
+					if(dist < 150)
 					{
+						context.lineWidth = 0.01 + 14/dist;
+						context.strokeStyle = "rgba(255, 255, 255, " + Math.round(100-2*dist/3)/100 + ")";
 						context.beginPath();
 						context.moveTo(particles[i].x, particles[i].y);
 						context.lineTo(particles[j].x, particles[j].y);
@@ -82,6 +86,7 @@
 				particles.push(new particle(Math.random() * $(window).width(), Math.random() * $(window).height(), getSpeed(), getSpeed()));
 			}
 		}, 50);
+	
 </script>
 <canvas id="home-canvas"></canvas>
 <div class="page-fade vertical-center">
