@@ -37,8 +37,8 @@
 		}
 
 		this.change = function(){
-			if(this.active) this.shrink();
-			else this.expand();
+			if(this.active) this.deactivate();
+			else this.activate();
 		};
 		this.activate = function(){
 			if(!this.active) 
@@ -48,44 +48,28 @@
 				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top+160});
 				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top+240});
 				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top+320});
+				TweenLite.to($(".nav-ball"), 0.3, {opacity: 1, color: "white"});
 			}
 		};
 		this.deactivate = function(){
 			if(this.active)
 			{
 				this.active = false;
-				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top});
-				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top});
+				TweenLite.to($(".nav-ball"), 0.3, {top:$(".nav-start").position().top, opacity: 0.2, color: "transparent"});
 			}
 		};
-		this.expand = function(){
-			TweenLite.to($(".nav-ball"), 0.2, {width: 75, height: 75, opacity: 1, color: "white"});
-			this.activate();
-		};
 
-		this.desktopExpand = function(){
+		this.desktopActivate = function(){
 			if(!this.mobile)
 			{
 				if(!TweenMax.isTweening($(".nav-ball")))
 				{
-					this.expand();
+					this.activate();
 				}
 			}
 		}
 
-		this.shrink = function(){
-			TweenLite.to($(".nav-ball"), 0.2, {width: 50, height: 50, opacity: 0.2, color: "transparent"});
-			this.deactivate();
-		}
-
 		this.fly = function(){
-			TweenLite.to($("#outer-circle"), 1, {autoAlpha:0, display:"none"});
-			TweenLite.to($("#middle-circle"), 1, {autoAlpha:0, display:"none"});
-			TweenLite.to($("#inner-circle"), 1, {autoAlpha:0, display:"none"});
-			
-
 			for(var i = 0; i < $(".nav-ball").length; i++)
 			{
 				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
@@ -114,6 +98,7 @@
 					$(".nav-init")[0].click();
 				}, this);
 				preload.loadManifest([
+			     {src:"img/edibit.png"},
 			     {src:"img/charliezhang.png"},
 			     {src:"img/dismahjam.png"},
 			     {src:"img/offlinebling.png"},
@@ -318,6 +303,9 @@
 	});
 })();
 
+$(document).ready(function(){
+	$("#bg").height($(window).height() + 60);
+});
 
 function goToHome()
 {

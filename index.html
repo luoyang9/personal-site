@@ -65,18 +65,16 @@
 	<link href="css/main.css" rel="stylesheet">																					
 </head>
 <body>
+<div id="bg">
+</div>
 <div class="wrapper">
 	<div class="page container-fluid" ui-view></div>
 
 	<div ng-controller="NavController as nav">
 
-		<div id="outer-circle" class="loop-circle"></div>
-		<div id="middle-circle" class="loop-circle"></div>
-		<div id="inner-circle" class="loop-circle"></div>
-
 		<div class="nav-pulse" ng-show="nav.unclicked"></div>
 
-		<div class="nav-start nav-ball" ng-hide="nav.unclicked" ng-click="nav.change()" ng-mouseover="nav.desktopExpand()">
+		<div class="nav-start nav-ball" ng-hide="nav.unclicked" ng-click="nav.change()" ng-mouseover="nav.desktopActivate()">
 			<span display="block" class="mega-octicon octicon-three-bars"></span>
 		</div>
 		<a ui-sref="home" id="trigger-home"><div class="nav-ball nav-home" ng-hide="nav.unclicked" ng-click="nav.mobileShrink()">
@@ -98,7 +96,6 @@
 
 		<div class="nav-ball nav-init" ng-show="nav.unclicked" ng-click="nav.trigger()"></div>
 	</div>
-
 </div>
 <script>
 
