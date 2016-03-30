@@ -3,123 +3,9 @@
 (function(){
 	var app = angular.module('personal', ['ui.router']);
 
-	app.config(function($stateProvider, $urlRouterProvider){
-
-		$stateProvider
-			.state('home', {
-				url: "/home",
-				templateUrl: 'partial-home.html'
-			})
-			.state('projects', {
-				url: "/projects",
-				templateUrl: "partial-projects.html",
-				controller: "ProjectsController",
-				controllerAs: "projects"
-
-			})
-			.state('about', {
-				url: "/about",
-				templateUrl: "partial-about.html"
-			});
-	});
-
-	app.controller("NavController", function(){
-
-		this.active = false;
-		this.unclicked = true;
-		this.mobile = false;
-
-		this.trigger = function(){
-			this.unclicked = false;
-			this.activate();
-			this.fly();
-			window.location = "#/home";
-		}
-
-		this.change = function(){
-			if(this.active) this.deactivate();
-			else this.activate();
-		};
-		this.activate = function(){
-			if(!this.active) 
-			{
-				this.active = true;
-				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top+80});
-				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top+160});
-				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top+240});
-				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top+320});
-				TweenLite.to($(".nav-ball"), 0.3, {opacity: 1, color: "white"});
-			}
-		};
-		this.deactivate = function(){
-			if(this.active)
-			{
-				this.active = false;
-				TweenLite.to($(".nav-ball"), 0.3, {top:$(".nav-start").position().top, opacity: 0.2, color: "transparent"});
-			}
-		};
-
-		this.desktopActivate = function(){
-			if(!this.mobile)
-			{
-				if(!TweenMax.isTweening($(".nav-ball")))
-				{
-					this.activate();
-				}
-			}
-		}
-
-		this.fly = function(){
-			for(var i = 0; i < $(".nav-ball").length; i++)
-			{
-				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
-			}	
-		}
-
-		this.mobileShrink = function(){
-			if(this.mobile) this.change(); 
-		};
-
-		this.init = function(){
-			if($(window).width() < 600) this.mobile = true;
-
-			var split = window.location.href.split("/");
-			if(split[split.length-1] != "") 
-			{
-				this.unclicked = false;
-				this.activate();
-				this.fly();
-			}
-			else
-			{
-				console.log("PRELOADING");
-				var preload = new createjs.LoadQueue();
-				preload.on("complete", function(){
-					$(".nav-init")[0].click();
-				}, this);
-				preload.loadManifest([
-			     {src:"img/edibit.png"},
-			     {src:"img/charliezhang.png"},
-			     {src:"img/dismahjam.png"},
-			     {src:"img/offlinebling.png"},
-			     {src:"img/getout.png"},
-			     {src:"img/greenidentity.png"},
-			     {src:"img/lectorial.png"},
-			     {src:"img/myomusic.png"},
-			     {src:"img/shooter.png"},
-			     {src:"img/voyagr.png"},
-			     {src:"partial-home.html"},
-			     {src:"partial-about.html"},
-			     {src:"partial-projects.html"}
-			 	]);
-			}
-		};
-
-    	this.init();
-	});
-
-	app.controller("ProjectsController", function(){
-		this.projects = [
+	app.factory('projectsFactory', function projectsFactory(){
+		var projectsFactory = {};
+		projectsFactory.projects = [
 			{
 				name: "Vertical Shooter Game",
 				date: "2016-02-14",
@@ -299,8 +185,127 @@
 				]
 			}
 		];
-
+		return projectsFactory;
 	});
+
+	app.config(function($stateProvider, $urlRouterProvider){
+
+		$stateProvider
+			.state('home', {
+				url: "/home",
+				templateUrl: 'partial-home.html'
+			})
+			.state('projects', {
+				url: "/projects",
+				templateUrl: "partial-projects.html",
+				controller: "ProjectsController",
+				controllerAs: "projects"
+
+			})
+			.state('about', {
+				url: "/about",
+				templateUrl: "partial-about.html"
+			});
+	});
+
+	app.controller("NavController", function(){
+
+		this.active = false;
+		this.unclicked = true;
+		this.mobile = false;
+
+		this.trigger = function(){
+			this.unclicked = false;
+			this.activate();
+			this.fly();
+			window.location = "#/home";
+		}
+
+		this.change = function(){
+			if(this.active) this.deactivate();
+			else this.activate();
+		};
+		this.activate = function(){
+			if(!this.active) 
+			{
+				this.active = true;
+				TweenLite.to($(".nav-home"), 0.3, {top:$(".nav-start").position().top+80});
+				TweenLite.to($(".nav-about"), 0.3, {top:$(".nav-start").position().top+160});
+				TweenLite.to($(".nav-projects"), 0.3, {top:$(".nav-start").position().top+240});
+				TweenLite.to($(".nav-resume"), 0.3, {top:$(".nav-start").position().top+320});
+				TweenLite.to($(".nav-ball"), 0.3, {opacity: 1, color: "white"});
+			}
+		};
+		this.deactivate = function(){
+			if(this.active)
+			{
+				this.active = false;
+				TweenLite.to($(".nav-ball"), 0.3, {top:$(".nav-start").position().top, opacity: 0.2, color: "transparent"});
+			}
+		};
+
+		this.desktopActivate = function(){
+			if(!this.mobile)
+			{
+				if(!TweenMax.isTweening($(".nav-ball")))
+				{
+					this.activate();
+				}
+			}
+		}
+
+		this.fly = function(){
+			for(var i = 0; i < $(".nav-ball").length; i++)
+			{
+				TweenLite.to($(".nav-ball")[i], 0.4, {delay:.15*i, left: 25, top: 25+i*80, margin: 0, ease: Power1.easeIn});
+			}	
+		}
+
+		this.mobileShrink = function(){
+			if(this.mobile) this.change(); 
+		};
+
+		this.init = function(){
+			if($(window).width() < 600) this.mobile = true;
+
+			var split = window.location.href.split("/");
+			if(split[split.length-1] != "") 
+			{
+				this.unclicked = false;
+				this.activate();
+				this.fly();
+			}
+			else
+			{
+				console.log("PRELOADING");
+				var preload = new createjs.LoadQueue();
+				preload.on("complete", function(){
+					$(".nav-init")[0].click();
+				}, this);
+				preload.loadManifest([
+			     {src:"img/edibit.png"},
+			     {src:"img/charliezhang.png"},
+			     {src:"img/dismahjam.png"},
+			     {src:"img/offlinebling.png"},
+			     {src:"img/getout.png"},
+			     {src:"img/greenidentity.png"},
+			     {src:"img/lectorial.png"},
+			     {src:"img/myomusic.png"},
+			     {src:"img/shooter.png"},
+			     {src:"img/voyagr.png"},
+			     {src:"partial-home.html"},
+			     {src:"partial-about.html"},
+			     {src:"partial-projects.html"}
+			 	]);
+			}
+		};
+
+    	this.init();
+	});
+
+	app.controller("ProjectsController", ["projectsFactory", function(projectsFactory){
+		this.projects = projectsFactory.projects;
+	}]);
 })();
 
 $(document).ready(function(){
