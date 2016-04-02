@@ -18,7 +18,7 @@ html, body {
 #bg {
 	position: fixed;
 	width:100%;
-	background: url("../img/background.jpg") no-repeat center center;
+	background: url("../img/background.jpg?v=2.0") no-repeat center center;
 	background-size: cover;
 }
 .nav-ball {
@@ -253,7 +253,7 @@ html, body {
 }
 
 #credit {
-	position:absolute;
+	position:fixed;
 	bottom: 5px;
 	left: 5px;
 	font-size: 12px;
