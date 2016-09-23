@@ -7,6 +7,42 @@
 		var projectsFactory = {};
 		projectsFactory.projects = [
 			{
+				name: "Know Yourself",
+				date: "2016-08-21",
+				description: "Analyzes your Facebook profile and displays interesting facts/statistics. Made at Hack the 6ix 2016.",
+				image: "img/knowyourself.jpg",
+				hasURL: false,
+				url: "",
+				urlType: "",
+				source: "http://github.com/luoyang9/6ix",
+				used: [
+					"AngularJS",
+					"Express",
+					"Facebook SDK",
+					"Clarifai API"
+				],
+				tags: [
+					"angular", "express", "node", "facebook", "clarifai", "analysis"
+				]
+			},
+			{
+				name: "Scary Bears VR",
+				date: "2016-09-18",
+				description: "A Google Cardboard game where you must survive a horde of undead teddy bears. Made at Hack the North 2016.",
+				image: "img/scarybearsvr.jpg",
+				hasURL: false,
+				url: "",
+				urlType: "",
+				source: "http://github.com/luoyang9/HackTheNorth2016",
+				used: [
+					"C#",
+					"Unity"
+				],
+				tags: [
+					"android", "c#", "vr", "unity", "cardboard", "game", "gaming"
+				]
+			},
+			{
 				name: "Vertical Shooter Game",
 				date: "2016-02-14",
 				description: "A vertical shooter game made in libGDX. Currently in development. Features different powerups, enemies, and levels.",
