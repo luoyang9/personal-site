@@ -11,7 +11,7 @@
 				date: "2016-08-21",
 				description: "Analyzes your Facebook profile and displays interesting facts/statistics. Made at Hack the 6ix 2016.",
 				image: "img/knowyourself.jpg",
-				hasURL: false,
+				hasURL: true,
 				url: "https://www.youtube.com/watch?v=l9A_PH_t830",
 				urlType: "Video",
 				source: "http://github.com/luoyang9/6ix",
