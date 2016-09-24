@@ -12,8 +12,8 @@
 				description: "Analyzes your Facebook profile and displays interesting facts/statistics. Made at Hack the 6ix 2016.",
 				image: "img/knowyourself.jpg",
 				hasURL: false,
-				url: "",
-				urlType: "",
+				url: "https://www.youtube.com/watch?v=l9A_PH_t830",
+				urlType: "Video",
 				source: "http://github.com/luoyang9/6ix",
 				used: [
 					"AngularJS",
@@ -30,9 +30,9 @@
 				date: "2016-09-18",
 				description: "A Google Cardboard game where you must survive a horde of undead teddy bears. Made at Hack the North 2016.",
 				image: "img/scarybearsvr.jpg",
-				hasURL: false,
-				url: "",
-				urlType: "",
+				hasURL: true,
+				url: "https://www.youtube.com/watch?v=ihczpw6ch0o",
+				urlType: "Video",
 				source: "http://github.com/luoyang9/HackTheNorth2016",
 				used: [
 					"C#",
@@ -65,7 +65,7 @@
 				description: "An online travel blog featuring an interactive map with markers for each blog post. Made at Hack the North 2015.",
 				image: "img/voyagr.png",
 				hasURL: true,
-				url: "http://www.charliezhang.xyz/myvoyagr",
+				url: "http://www.charliezhang.xyz/hosted-projects/voyagr",
 				urlType: "Live",
 				source: "http://github.com/rickeywang/hack2015",
 				used: [
@@ -137,7 +137,7 @@
 				description: "A web platform that matches together university students with similar physical interests. Created for the final design project for SHAD 2015.",
 				image: "img/getout.png",
 				hasURL: true,
-				url: "http://www.charliezhang.xyz/getout",
+				url: "http://www.charliezhang.xyz/hosted-projects/getout",
 				urlType: "Demo",
 				source: "http://github.com/luoyang9/SHAD-2015-Project",
 				used: [
@@ -155,7 +155,7 @@
 				description: "Ever wanted to play Guitar Hero/DDR with a Myo? Now you can with MyoMusic! Created at EngHack Fall 2015.",
 				image: "img/myomusic.png",
 				hasURL: true,
-				url: "http://www.charliezhang.xyz/myomusic",
+				url: "http://www.charliezhang.xyz/hosted-projects/myomusic",
 				urlType: "Live",
 				source: "http://github.com/luoyang9/MyoDDR",
 				used: [
@@ -173,7 +173,7 @@
 				description: "Ever wanted to know what yo jam is? Now you can with DisMahJam! Made at TerribleHack 2015. (Note: The terribleness of this project was intended)",
 				image: "img/dismahjam.png",
 				hasURL: true,
-				url: "http://www.charliezhang.xyz/dismahjam",
+				url: "http://www.charliezhang.xyz/hosted-projects/dismahjam",
 				urlType: "Live",
 				source : "http://github.com/daniel5151/dismahjam",
 				used: [
@@ -208,7 +208,7 @@
 				description: "A company website built for Green Identity, the winning team at SHAD 2015. ",
 				image: "img/greenidentity.png",
 				hasURL: true,
-				url: "http://www.charliezhang.xyz/greenidentity",
+				url: "http://www.charliezhang.xyz/hosted-projects/greenidentity",
 				urlType: "Live",
 				source : "http://github.com/luoyang9/Green-Identity-Website",
 				used: [
