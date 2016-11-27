@@ -7,6 +7,25 @@
 		var projectsFactory = {};
 		projectsFactory.projects = [
 			{
+				name: "LMS4TBH",
+				date: "2016-11-26",
+				description: "Posts a 'Like my status for a To Be Honest' post on your Facebook wall, then scrapes your private messages with everyone who liked your post and generates brutally honest TBHs for each of them . Made at TerribleHack V.",
+				image: "img/lms4tbh.png",
+				hasURL: false,
+				url: "",
+				urlType: "",
+				source: "http://github.com/tyler-zhang/lms4tbh",
+				used: [
+					"React",
+					"Facebook Javascript SDK",
+					"Firebase",
+					"markovify"
+				],
+				tags: [
+					"react", "firebase", "markov", "facebook", "terrible", "TerribleHack"
+				]
+			},
+			{
 				name: "Know Yourself",
 				date: "2016-08-21",
 				description: "Analyzes your Facebook profile and displays interesting facts/statistics. Made at Hack the 6ix 2016.",
